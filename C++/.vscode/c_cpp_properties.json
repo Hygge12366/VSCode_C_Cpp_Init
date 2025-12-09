@@ -1,14 +1,18 @@
+//  C/C++ 配置文件，用于配置 C/C++ 的 IntelliSense（代码补全、错误检查等）
 {
-    "configurations": [
+    //定义一组编译配置，可以包含多个不同的配置（如 Debug、Release、Win32、x64 等）以适应不同平台或编译环境
+    "configurations": [ 
       {
-        "name": "Win64",
-        "includePath": ["${workspaceFolder}/**"],
-        "defines": ["_DEBUG", "UNICODE", "_UNICODE"],
-        "windowsSdkVersion": "10.0.18362.0",
+        "name": "C++ Project (MinGW)",                                          //给当前配置命名
+        "includePath": [
+          "${workspaceFolder}/**"                                 //指定头文件的搜索路径
+        ],                    
+        "defines": ["_DEBUG", "UNICODE", "_UNICODE"],             //定义预处理器宏
+        "windowsSdkVersion": "10.0.18362.0",                      //指定使用的 Windows SDK 版本
         "compilerPath": "D:/Program/minGW/mingw64/bin/g++.exe",
-        "cStandard": "c17",
-        "cppStandard": "c++17",
-        "intelliSenseMode": "gcc-x64"
+        "cStandard": "c17",                                       // C标准
+        "cppStandard": "c++17",                                   // C++标准
+        "intelliSenseMode": "gcc-x64"                             //intelliSense指智能代码补全和辅助功能
       }
     ],
     "version": 4
