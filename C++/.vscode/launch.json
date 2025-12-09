@@ -1,24 +1,28 @@
+//调试配置文件，用于配置如何调试 C/C++ 程序
 {
-    "version": "0.2.0",
+    "version": "0.2.0",                                                     //launch.json 格式版本 0.2.0
+    //定义一组调试配置，可以包含多个不同场景的调试配置（如本地调试、远程调试等）
     "configurations": [
       {
-        "name": "(gdb) Launch",                                             // 调试配置的名称，显示在调试启动选项中
-        "type": "cppdbg", 
-        "request": "launch", 
+        "name": "C++ Debug",                                                // 调试配置的名称，显示在调试启动选项中
+        "type": "cppdbg",                                                   // 指定调试器类型，cppdbg 表示使用 VS Code 的 C/C++ 扩展提供的调试功能
+        "request": "launch",                                                // 指定调试模式为 启动调试（launch），即直接运行并调试程序
         "program": "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe",   // 要调试的可执行文件路径
-        "args": [], 
-        "stopAtEntry": false,
-        "cwd": "${workspaceRoot}",                                          // 调试时的工作目录
-        "environment": [],
-        "externalConsole": true,                                            // 使用 VS Code 内置终端
-        "MIMode": "gdb",
-        "miDebuggerPath": "D:\\Program\\minGW\\mingw64\\bin\\g++.exe",
-        "preLaunchTask": "g++",                                             // 在调试前先编译代码（launch用于调试，tasks用于编译和运行）
-        "setupCommands": [
+        "args": [],                                                         // 传递给程序的命令行参数
+        "stopAtEntry": false,                                               // 是否在程序入口（main 函数）处自动暂停
+        "cwd": "${fileDirname}",                                            // 工作目录：改为当前文件目录
+//      "cwd": "${workspaceFolder}",                                        // 工作目录：改为当前文件目录的根目录
+        "environment": [],                                                  // 设置调试时的环境变量
+        "externalConsole": false,                                           // 使用 VS Code 内置终端
+        "MIMode": "gdb",                                                    // 指定调试器类型为 GDB（GNU Debugger）
+        "miDebuggerPath": "D:\\Program\\minGW\\mingw64\\bin\\gdb.exe",
+        "preLaunchTask": "g++ build",                                       // 在调试前先编译代码（launch用于调试，tasks用于编译和运行）
+                                                                            // 需要对应的tasks.json任务
+        "setupCommands": [                                                  // 向 GDB 调试器发送初始化命令（配置调试器行为）
           {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFailures": true
+            "description": "Enable pretty-printing for gdb",                // 启用 GDB 的友好变量显示（如美化 STL 容器输出）
+            "text": "-enable-pretty-printing",                              // 美化打印” 功能，让 STL 容器的调试输出更易读
+            "ignoreFailures": true                                          // 即使命令执行失败也不报错
           }
         ]
       }
